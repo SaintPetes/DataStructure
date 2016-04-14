@@ -14,8 +14,14 @@ public class CFName extends javax.swing.JDialog {
     /**
      * Creates new form CFName
      */
-    public CFName() {
-
+    public CFName(){
+        
+    }
+    CareFacilityGUI cfGUI;
+    
+    public CFName(CareFacilityGUI CFG) {
+        cfGUI = CFG;
+        
     }
 
     public CFName(java.awt.Frame parent, boolean modal) {
@@ -23,6 +29,7 @@ public class CFName extends javax.swing.JDialog {
         initComponents();
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,13 +97,17 @@ public class CFName extends javax.swing.JDialog {
     private void enterButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButton
         CareFacilityGUI nw = new CareFacilityGUI();
         nw.newMenu();
+        this.dispose();
+        cfGUI.getData[0] = this.cfName.getText();
+        
     }//GEN-LAST:event_enterButton
 
     private void dataEntered(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataEntered
-        String text = cfName.getText();
         CareFacilityGUI nw = new CareFacilityGUI();
         nw.newMenu();
         this.dispose();
+        cfGUI.getData[0] = this.cfName.getText();
+        
     }//GEN-LAST:event_dataEntered
 
     /**
@@ -128,6 +139,7 @@ public class CFName extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 CFName dialog = new CFName(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
