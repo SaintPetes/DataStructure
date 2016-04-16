@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package GUI;
+import Stacks.Patient;
+import Stacks.Bed;
+import Stacks.ArrayStack;
+import Queue_List.CasualEmployee;
+import Queue_List.LinkedList;
+import Queue_List.LinkedQueue;
 
 /**
  *
@@ -11,10 +17,19 @@ package GUI;
  */
 public class CareFacilityGUI extends javax.swing.JFrame {
 
+    private String patientP;
+    private String patientName;
+    private String bedLocal;
+    private String newBed;
+    private String newEmployee;
+    private boolean available = true;
+   
+    
     public static String[] getData = new String[1];
     
     public void insertData(){
-        this.companyName.setText(getData[0]);
+        this.companyName.setText("The CareFacility" + getData[0]);
+        companyName.setText(getData[1]);
     }
     /**
      * Creates new form CareFacilityGUI
@@ -46,6 +61,8 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         releasePatient = new javax.swing.JButton();
         addPatient = new javax.swing.JButton();
+        patientPriority = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
         bedsPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         bedLocation = new javax.swing.JTextField();
@@ -109,6 +126,20 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         });
 
         addPatient.setText("Add Patient");
+        addPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPatientActionPerformed(evt);
+            }
+        });
+
+        patientPriority.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        patientPriority.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientPriorityActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Patient Priority:");
 
         javax.swing.GroupLayout patientsPanelLayout = new javax.swing.GroupLayout(patientsPanel);
         patientsPanel.setLayout(patientsPanelLayout);
@@ -121,7 +152,7 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                         .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(releasePatient)
                             .addComponent(addPatient))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 381, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(patientsPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -130,7 +161,12 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3)
                             .addComponent(patientsName)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(patientPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(88, 88, 88))
         );
         patientsPanelLayout.setVerticalGroup(
@@ -139,9 +175,13 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel12))
                 .addGap(10, 10, 10)
-                .addComponent(patientsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(patientsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(addPatient)
                 .addGap(126, 126, 126)
@@ -156,12 +196,17 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                 .addGap(0, 270, Short.MAX_VALUE))
         );
 
-        mainPanel.addTab("Patients", patientsPanel);
+        mainPanel.addTab("Patients", null, patientsPanel, "");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Add an Available Bed");
 
         addBed.setText("Add Bed");
+        addBed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBedActionPerformed(evt);
+            }
+        });
 
         bedTextArea.setColumns(20);
         bedTextArea.setRows(5);
@@ -245,6 +290,11 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         dismissEmployee.setText("Dismiss");
 
         clockInButton.setText("Clock In");
+        clockInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clockInButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout employeesPanelLayout = new javax.swing.GroupLayout(employeesPanel);
         employeesPanel.setLayout(employeesPanelLayout);
@@ -405,7 +455,13 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void patientsNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientsNameActionPerformed
-        // TODO add your handling code here:
+        patientName = patientsName.getText();
+        Patient newP = new Patient(patientName,Integer.parseInt(patientP));
+        patientsTextArea.append("The new patient " + patientName + " with priority " +
+                patientP + " has been added" + "\n");
+       
+        
+        
     }//GEN-LAST:event_patientsNameActionPerformed
 
     private void releasePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_releasePatientActionPerformed
@@ -423,6 +479,32 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void patientPriorityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientPriorityActionPerformed
+         patientP = (String)patientPriority.getSelectedItem();
+        
+        
+        
+    }//GEN-LAST:event_patientPriorityActionPerformed
+
+    private void addPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientActionPerformed
+        patientName = patientsName.getText();
+        Patient newP = new Patient(patientName,Integer.parseInt(patientP));
+        patientsTextArea.append("The new patient " + patientName + " with priority " +
+                patientP + " has been added" + "\n");
+    }//GEN-LAST:event_addPatientActionPerformed
+
+    private void addBedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBedActionPerformed
+        newBed = bedLocation.getText();
+        Bed newB = new Bed(newBed,bedLocal);
+        bedTextArea.append("The bed " + newBed + " has been added" +"\n");
+    }//GEN-LAST:event_addBedActionPerformed
+
+    private void clockInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInButtonActionPerformed
+        newEmployee = employeesName.getText();
+        CasualEmployee newE = new CasualEmployee(newEmployee,available);
+        employeesTextarea.append(newEmployee + " has been punched their time card" +"\n");
+    }//GEN-LAST:event_clockInButtonActionPerformed
 
     /**
      */
@@ -486,6 +568,7 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -502,6 +585,7 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private javax.swing.JLabel overViewLabel;
     private javax.swing.JTextArea overViewtextarea;
     private javax.swing.JPanel overviewPanel;
+    private javax.swing.JComboBox patientPriority;
     private javax.swing.JLabel patientsCured;
     private javax.swing.JTextField patientsName;
     private javax.swing.JPanel patientsPanel;
@@ -509,4 +593,8 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private javax.swing.JButton releasePatient;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    void setText(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
