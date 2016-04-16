@@ -107,7 +107,7 @@ public class CFName extends javax.swing.JDialog {
         nw.newMenu();
         this.dispose();
         cfGUI.getData[0] = this.cfName.getText();
-        
+       
     }//GEN-LAST:event_dataEntered
 
     /**
