@@ -61,11 +61,27 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="2" attributes="0">
-                                  <Component id="releasePatient" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="addPatient" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="addPatient" min="-2" max="-2" attributes="0"/>
+                                          <Component id="releasePatient" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="deletePatient" pref="132" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="searchPatients" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="sortPatients" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="376" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -110,12 +126,21 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="deletePatient" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="releasePatient" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="442" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="searchPatients" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="sortPatients" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="442" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="0" pref="270" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -211,6 +236,21 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Patient Priority:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="deletePatient">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePatientActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="sortPatients">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sort Patients"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="searchPatients">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Search Patients"/>
               </Properties>
             </Component>
           </SubComponents>

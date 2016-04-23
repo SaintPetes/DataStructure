@@ -95,18 +95,19 @@ public class CFName extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButton
-        CareFacilityGUI nw = new CareFacilityGUI();
-        nw.newMenu();
+        CareFacilityGUI.newMenu();
         this.dispose();
-        cfGUI.getData[0] = this.cfName.getText();
+        String label = cfName.getText();
+        
         
     }//GEN-LAST:event_enterButton
 
     private void dataEntered(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataEntered
-        CareFacilityGUI nw = new CareFacilityGUI();
-        nw.newMenu();
+        CareFacilityGUI.newMenu();
         this.dispose();
-        cfGUI.getData[0] = this.cfName.getText();
+        String label = cfName.getText();
+        
+        
        
     }//GEN-LAST:event_dataEntered
 
@@ -151,7 +152,7 @@ public class CFName extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cfName;
+    public static javax.swing.JTextField cfName;
     private javax.swing.JButton createName;
     private javax.swing.JLabel jLabel1;
     private java.awt.TextArea textArea1;

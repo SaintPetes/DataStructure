@@ -23,14 +23,11 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private String newBed;
     private String newEmployee;
     private boolean available = true;
-   
+    private String deleteName;
     
-    public static String[] getData = new String[1];
     
-    public void insertData(){
-        this.companyName.setText("The CareFacility" + getData[0]);
-        companyName.setText(getData[1]);
-    }
+    
+  
     /**
      * Creates new form CareFacilityGUI
      */
@@ -63,6 +60,9 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         addPatient = new javax.swing.JButton();
         patientPriority = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
+        deletePatient = new javax.swing.JTextField();
+        sortPatients = new javax.swing.JButton();
+        searchPatients = new javax.swing.JButton();
         bedsPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         bedLocation = new javax.swing.JTextField();
@@ -141,6 +141,16 @@ public class CareFacilityGUI extends javax.swing.JFrame {
 
         jLabel12.setText("Patient Priority:");
 
+        deletePatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePatientActionPerformed(evt);
+            }
+        });
+
+        sortPatients.setText("Sort Patients");
+
+        searchPatients.setText("Search Patients");
+
         javax.swing.GroupLayout patientsPanelLayout = new javax.swing.GroupLayout(patientsPanel);
         patientsPanel.setLayout(patientsPanelLayout);
         patientsPanelLayout.setHorizontalGroup(
@@ -149,10 +159,21 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                 .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(patientsPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(releasePatient)
-                            .addComponent(addPatient))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
+                        .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(patientsPanelLayout.createSequentialGroup()
+                                .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addPatient)
+                                    .addComponent(releasePatient))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(patientsPanelLayout.createSequentialGroup()
+                                .addComponent(deletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                .addGap(356, 356, 356))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientsPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(searchPatients)
+                                    .addComponent(sortPatients))
+                                .addGap(60, 60, 60)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(patientsPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -188,11 +209,18 @@ public class CareFacilityGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deletePatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(releasePatient)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(patientsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(patientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(patientsPanelLayout.createSequentialGroup()
+                        .addComponent(searchPatients)
+                        .addGap(18, 18, 18)
+                        .addComponent(sortPatients))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 270, Short.MAX_VALUE))
         );
 
@@ -459,21 +487,22 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         Patient newP = new Patient(patientName,Integer.parseInt(patientP));
         patientsTextArea.append("The new patient " + patientName + " with priority " +
                 patientP + " has been added" + "\n");
+        companyName.setText(CFName.cfName.getText());
        
         
         
     }//GEN-LAST:event_patientsNameActionPerformed
 
     private void releasePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_releasePatientActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_releasePatientActionPerformed
 
     private void assignBedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBedActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_assignBedActionPerformed
 
     private void assignEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignEmployeeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_assignEmployeeActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -497,7 +526,7 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private void addBedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBedActionPerformed
         newBed = bedLocation.getText();
         Bed newB = new Bed(newBed,bedLocal);
-        bedTextArea.append("The bed " + newBed + " has been added" +"\n");
+        bedTextArea.append("The bed in " + newBed + " has been added" +"\n");
     }//GEN-LAST:event_addBedActionPerformed
 
     private void clockInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInButtonActionPerformed
@@ -505,6 +534,13 @@ public class CareFacilityGUI extends javax.swing.JFrame {
         CasualEmployee newE = new CasualEmployee(newEmployee,available);
         employeesTextarea.append(newEmployee + " has been punched their time card" +"\n");
     }//GEN-LAST:event_clockInButtonActionPerformed
+
+    private void deletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientActionPerformed
+          if (patientName.equals(deleteName)){
+              patientsTextArea.append(patientName + " has been released from the facility");
+          }
+          
+    }//GEN-LAST:event_deletePatientActionPerformed
 
     /**
      */
@@ -559,6 +595,7 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private javax.swing.JLabel busyEmployees;
     private javax.swing.JButton clockInButton;
     public static javax.swing.JLabel companyName;
+    private javax.swing.JTextField deletePatient;
     private javax.swing.JButton dismissEmployee;
     private javax.swing.JTextField employeesName;
     private javax.swing.JPanel employeesPanel;
@@ -591,6 +628,8 @@ public class CareFacilityGUI extends javax.swing.JFrame {
     private javax.swing.JPanel patientsPanel;
     private javax.swing.JTextArea patientsTextArea;
     private javax.swing.JButton releasePatient;
+    private javax.swing.JButton searchPatients;
+    private javax.swing.JButton sortPatients;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
